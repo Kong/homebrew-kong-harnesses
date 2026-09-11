@@ -15,6 +15,7 @@ the release archives:
 
 ```sh
 export HOMEBREW_GITHUB_API_TOKEN=<YOUR TOKEN>
+brew trust --tap kong/agent-auth-cli
 brew tap Kong/agent-auth-cli git@github.com:Kong/homebrew-agent-auth-cli.git
 brew install Kong/agent-auth-cli/agent-auth-cli
 ```
@@ -25,7 +26,7 @@ git does not reach GitHub over SSH.
 ## Going public
 
 Both this tap and `Kong/agent-auth-cli` are internal for now. When the tool is
-published, the token requirement and `Formula/lib/private_strategy.rb` go away:
+published, the token requirement and `lib/private_strategy.rb` go away:
 drop `download_strategy` and `custom_require` from the `brews` block in
 `Kong/agent-auth-cli`'s `.goreleaser.yaml`, and `brew tap Kong/agent-auth-cli`
 works with no token.
