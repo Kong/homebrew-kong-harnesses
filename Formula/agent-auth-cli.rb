@@ -6,20 +6,20 @@ require_relative "../lib/private_strategy"
 class AgentAuthCli < Formula
   desc "One-shot OIDC credential helper for local coding agents"
   homepage "https://github.com/Kong/agent-auth-cli"
-  version "0.3.0"
+  version "0.4.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/Kong/agent-auth-cli/releases/download/v0.3.0/agent-auth-cli_v0.3.0_darwin_amd64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "df28da268059fedcfc9b8713b3c91a96c815a00912353e26b8315609e7e7aa95"
+      url "https://github.com/Kong/agent-auth-cli/releases/download/v0.4.0/agent-auth-cli_v0.4.0_darwin_amd64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
+      sha256 "a53f1ccc7e666d6228383371d9d4414f26d05cc72eb6d36072c2fa8f545be8c5"
 
       define_method(:install) do
         bin.install "agent-auth-cli"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/Kong/agent-auth-cli/releases/download/v0.3.0/agent-auth-cli_v0.3.0_darwin_arm64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "6da6349462ecc4cf3098c08b00d38e416b826a06a12f2683f4418a9de8ec06a5"
+      url "https://github.com/Kong/agent-auth-cli/releases/download/v0.4.0/agent-auth-cli_v0.4.0_darwin_arm64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
+      sha256 "1da961cbf2f551456fecf5f0e9b6430d6675565e8698329cba5198ca11718946"
 
       define_method(:install) do
         bin.install "agent-auth-cli"
@@ -29,15 +29,15 @@ class AgentAuthCli < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/Kong/agent-auth-cli/releases/download/v0.3.0/agent-auth-cli_v0.3.0_linux_amd64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "a0bba25bfdd661cb8a42813b776d5db32cf735c49dd9a0aed5627ff1d9af4619"
+      url "https://github.com/Kong/agent-auth-cli/releases/download/v0.4.0/agent-auth-cli_v0.4.0_linux_amd64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
+      sha256 "7517fbce311703cce552981982e3448f4694c1d373fe655c6050e3c7f72a118e"
       define_method(:install) do
         bin.install "agent-auth-cli"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/Kong/agent-auth-cli/releases/download/v0.3.0/agent-auth-cli_v0.3.0_linux_arm64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "b2864368e273abc4edb8a892402a5b0d05d9f48aff6eee4fe9ca3be49d1a97a6"
+      url "https://github.com/Kong/agent-auth-cli/releases/download/v0.4.0/agent-auth-cli_v0.4.0_linux_arm64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
+      sha256 "a11a49c9b8f0659ccec3bd14dbb01e41b6b411fb1e26ac26796be8ddb2b4259a"
       define_method(:install) do
         bin.install "agent-auth-cli"
       end
