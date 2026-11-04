@@ -6,20 +6,20 @@ require_relative "../lib/private_strategy"
 class AgentAuthCli < Formula
   desc "One-shot OIDC credential helper for local coding agents"
   homepage "https://github.com/Kong/agent-auth-cli"
-  version "0.7.0"
+  version "0.8.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/Kong/agent-auth-cli/releases/download/v0.7.0/agent-auth-cli_v0.7.0_darwin_amd64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "7d44521c8189a01dbbe3298200eb0136986ab56b148e56080038c7130d0a7494"
+      url "https://github.com/Kong/agent-auth-cli/releases/download/v0.8.0/agent-auth-cli_v0.8.0_darwin_amd64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
+      sha256 "40054662a20a699899657cbd68b565aca4488b8ad8e91ca7a1a8663ebf0e2ef2"
 
       define_method(:install) do
         bin.install "agent-auth-cli"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/Kong/agent-auth-cli/releases/download/v0.7.0/agent-auth-cli_v0.7.0_darwin_arm64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "63df0c363c8be3387c79a27a766df059fb148c194a622a4a0c58d70ddca28547"
+      url "https://github.com/Kong/agent-auth-cli/releases/download/v0.8.0/agent-auth-cli_v0.8.0_darwin_arm64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
+      sha256 "17a8716a8062fd82b9e83db80533a848c1deb0f6c4f05a838ea660cf6879a99b"
 
       define_method(:install) do
         bin.install "agent-auth-cli"
@@ -29,15 +29,15 @@ class AgentAuthCli < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/Kong/agent-auth-cli/releases/download/v0.7.0/agent-auth-cli_v0.7.0_linux_amd64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "77752c8b6b1b55bcfe73eb0fe4f6ed188a1ef932cf262cd8d4fc177fe8b47050"
+      url "https://github.com/Kong/agent-auth-cli/releases/download/v0.8.0/agent-auth-cli_v0.8.0_linux_amd64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
+      sha256 "6b6f9bf5a2ecc2944d2c7b0797028fdcb9fce6d3b4a939f20fb6384ed90340de"
       define_method(:install) do
         bin.install "agent-auth-cli"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/Kong/agent-auth-cli/releases/download/v0.7.0/agent-auth-cli_v0.7.0_linux_arm64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "0102ece7d74a6242f0dc00fd040a4c571ac3eef8acecf5c5a846a750c9322866"
+      url "https://github.com/Kong/agent-auth-cli/releases/download/v0.8.0/agent-auth-cli_v0.8.0_linux_arm64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
+      sha256 "5aeec84c9b49d2c03d85eb097d1e140efb0e0cc9feb12465ad647f0a582cb243"
       define_method(:install) do
         bin.install "agent-auth-cli"
       end
@@ -48,7 +48,9 @@ class AgentAuthCli < Formula
     <<~EOS
       After an upgrade, run `agent-auth-cli status --name <profile>`. It says
       when this release changes what `profile activate` writes, and names the
-      command that applies it.
+      command that applies it. On macOS, first run
+      `agent-auth-cli login --name <profile>` and choose Always Allow when
+      macOS asks, so this build can read your saved sign-in.
     EOS
   end
 
