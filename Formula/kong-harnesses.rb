@@ -6,55 +6,65 @@ require_relative "../lib/private_strategy"
 class KongHarnesses < Formula
   desc "One-shot OIDC credential helper for local coding agents"
   homepage "https://github.com/Kong/kong-harnesses"
-  version "0.8.1"
+  version "0.9.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/Kong/kong-harnesses/releases/download/v0.8.1/agent-auth-cli_v0.8.1_darwin_amd64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "88d0435ce0a1430ca9b0c5c17fbcce85a445b08447b7e1aee536450e6c0b3bdd"
+      url "https://github.com/Kong/kong-harnesses/releases/download/v0.9.0/kong-harnesses_v0.9.0_darwin_amd64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
+      sha256 "7339e3eebf5b65876118b8bf2ade2854390b7a17f545b38c9ce2e5948567ab98"
 
       define_method(:install) do
-        bin.install "agent-auth-cli"
+        bin.install "kong-harnesses"
+        bin.install_symlink "kong-harnesses" => "agent-auth-cli"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/Kong/kong-harnesses/releases/download/v0.8.1/agent-auth-cli_v0.8.1_darwin_arm64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "5df060a1fe464c167c46a409c73b0ce7021aab94a81fa2e9c419b76cfa3be3b0"
+      url "https://github.com/Kong/kong-harnesses/releases/download/v0.9.0/kong-harnesses_v0.9.0_darwin_arm64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
+      sha256 "eb37be85e175ca5148371bf5b95aaeb8892d0a052cb05cd39c407b760ca389a9"
 
       define_method(:install) do
-        bin.install "agent-auth-cli"
+        bin.install "kong-harnesses"
+        bin.install_symlink "kong-harnesses" => "agent-auth-cli"
       end
     end
   end
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/Kong/kong-harnesses/releases/download/v0.8.1/agent-auth-cli_v0.8.1_linux_amd64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "71046b328286a10fe81223bcbb13b25c2174c28a05fa39b99d08304e009b4f2b"
+      url "https://github.com/Kong/kong-harnesses/releases/download/v0.9.0/kong-harnesses_v0.9.0_linux_amd64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
+      sha256 "f3bd92144780b866ac8b8c3fcd554d50ef5e6561294d9706a0140821f79f52cf"
       define_method(:install) do
-        bin.install "agent-auth-cli"
+        bin.install "kong-harnesses"
+        bin.install_symlink "kong-harnesses" => "agent-auth-cli"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/Kong/kong-harnesses/releases/download/v0.8.1/agent-auth-cli_v0.8.1_linux_arm64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "2abcb4ee329143aef0e8a6482da7c22bc98570a0b9ff41b178c40c45e09fcd05"
+      url "https://github.com/Kong/kong-harnesses/releases/download/v0.9.0/kong-harnesses_v0.9.0_linux_arm64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
+      sha256 "bf75baf957e22ab84c71c4c991591a18c1c0016c380ad52bf8a09880e2380684"
       define_method(:install) do
-        bin.install "agent-auth-cli"
+        bin.install "kong-harnesses"
+        bin.install_symlink "kong-harnesses" => "agent-auth-cli"
       end
     end
   end
 
   def caveats
     <<~EOS
-      After an upgrade, run `agent-auth-cli status --name <profile>`. It says
+      After an upgrade, run `kong-harnesses status --name <profile>`. It says
       when this release changes what `profile activate` writes, and names the
       command that applies it. On macOS, first run
-      `agent-auth-cli login --name <profile>` and choose Always Allow when
+      `kong-harnesses login --name <profile>` and choose Always Allow when
       macOS asks, so this build can read your saved sign-in.
+
+      agent-auth-cli is now kong-harnesses. The formula also installs
+      `agent-auth-cli` as a link to it, so client settings that an older
+      release wrote keep working. Run
+      `kong-harnesses profile activate --name <profile>` to write settings
+      that use the new name.
     EOS
   end
 
   test do
-    system "#{bin}/agent-auth-cli", "completion", "bash"
+    system "#{bin}/kong-harnesses", "completion", "bash"
   end
 end
