@@ -6,12 +6,12 @@ require_relative "../lib/private_strategy"
 class KongHarnesses < Formula
   desc "One-shot OIDC credential helper for local coding agents"
   homepage "https://github.com/Kong/kong-harnesses"
-  version "0.9.0"
+  version "0.10.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/Kong/kong-harnesses/releases/download/v0.9.0/kong-harnesses_v0.9.0_darwin_amd64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "7339e3eebf5b65876118b8bf2ade2854390b7a17f545b38c9ce2e5948567ab98"
+      url "https://github.com/Kong/kong-harnesses/releases/download/v0.10.0/kong-harnesses_v0.10.0_darwin_amd64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
+      sha256 "8ea8f2e571c91e94a7b75c8ec5281178d79ffbb6ffec60ca67a537a116ef5764"
 
       define_method(:install) do
         bin.install "kong-harnesses"
@@ -19,8 +19,8 @@ class KongHarnesses < Formula
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/Kong/kong-harnesses/releases/download/v0.9.0/kong-harnesses_v0.9.0_darwin_arm64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "eb37be85e175ca5148371bf5b95aaeb8892d0a052cb05cd39c407b760ca389a9"
+      url "https://github.com/Kong/kong-harnesses/releases/download/v0.10.0/kong-harnesses_v0.10.0_darwin_arm64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
+      sha256 "c6e3f71a758068e8da5eb798ed603c3ca353a61e94c32ed04fa3145562187c01"
 
       define_method(:install) do
         bin.install "kong-harnesses"
@@ -31,16 +31,16 @@ class KongHarnesses < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/Kong/kong-harnesses/releases/download/v0.9.0/kong-harnesses_v0.9.0_linux_amd64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "f3bd92144780b866ac8b8c3fcd554d50ef5e6561294d9706a0140821f79f52cf"
+      url "https://github.com/Kong/kong-harnesses/releases/download/v0.10.0/kong-harnesses_v0.10.0_linux_amd64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
+      sha256 "11c3c90d803e156f38761e774875f74b901d32589258ceb846db1e3b2b129fad"
       define_method(:install) do
         bin.install "kong-harnesses"
         bin.install_symlink "kong-harnesses" => "agent-auth-cli"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/Kong/kong-harnesses/releases/download/v0.9.0/kong-harnesses_v0.9.0_linux_arm64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "bf75baf957e22ab84c71c4c991591a18c1c0016c380ad52bf8a09880e2380684"
+      url "https://github.com/Kong/kong-harnesses/releases/download/v0.10.0/kong-harnesses_v0.10.0_linux_arm64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
+      sha256 "81dc280a984c796a4a45c008140f02a6ef27a0fb3d073e30b080b2443957f9ac"
       define_method(:install) do
         bin.install "kong-harnesses"
         bin.install_symlink "kong-harnesses" => "agent-auth-cli"
@@ -50,16 +50,16 @@ class KongHarnesses < Formula
 
   def caveats
     <<~EOS
-      After an upgrade, run `kong-harnesses status --name <profile>`. It says
+      After an upgrade, run `kong-harnesses status --profile <profile>`. It says
       when this release changes what `profile activate` writes, and names the
       command that applies it. On macOS, first run
-      `kong-harnesses login --name <profile>` and choose Always Allow when
+      `kong-harnesses login --profile <profile>` and choose Always Allow when
       macOS asks, so this build can read your saved sign-in.
 
       agent-auth-cli is now kong-harnesses. The formula also installs
       `agent-auth-cli` as a link to it, so client settings that an older
       release wrote keep working. Run
-      `kong-harnesses profile activate --name <profile>` to write settings
+      `kong-harnesses profile activate <profile>` to write settings
       that use the new name.
     EOS
   end
