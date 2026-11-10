@@ -57,13 +57,25 @@ class GitHubPrivateRepositoryDownloadStrategy < CurlDownloadStrategy
   end
 
   def download_url
-    "https://#{@github_token}@github.com/#{@owner}/#{@repo}/#{@filepath}"
+    "https://github.com/#{@owner}/#{@repo}/#{@filepath}"
   end
 
   private
 
   def _fetch(url:, resolved_url:, timeout:)
-    curl_download download_url, to: temporary_path
+    with_token_header { |header| curl_download download_url, "--header", header, to: temporary_path }
+  end
+
+  # Any local process can read curl's command line, so the token goes to curl
+  # in a header file that only this user can read, never in an argument.
+  def with_token_header
+    require "tempfile"
+    Tempfile.create("github-token-header") do |file|
+      file.chmod(0600)
+      file.write("Authorization: Bearer #{@github_token}\n")
+      file.close
+      yield "@#{file.path}"
+    end
   end
 
   def set_github_token
@@ -109,7 +121,7 @@ class GitHubPrivateRepositoryReleaseDownloadStrategy < GitHubPrivateRepositoryDo
   end
 
   def download_url
-    "https://#{@github_token}@api.github.com/repos/#{@owner}/#{@repo}/releases/assets/#{asset_id}"
+    "https://api.github.com/repos/#{@owner}/#{@repo}/releases/assets/#{asset_id}"
   end
 
   private
@@ -117,7 +129,10 @@ class GitHubPrivateRepositoryReleaseDownloadStrategy < GitHubPrivateRepositoryDo
   def _fetch(url:, resolved_url:, timeout:)
     # HTTP request header `Accept: application/octet-stream` is required.
     # Without this, the GitHub API will respond with metadata, not binary.
-    curl_download download_url, "--header", "Accept: application/octet-stream", to: temporary_path
+    with_token_header do |header|
+      curl_download download_url, "--header", header, "--header", "Accept: application/octet-stream",
+                    to: temporary_path
+    end
   end
 
   def asset_id
