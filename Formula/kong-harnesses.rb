@@ -6,12 +6,12 @@ require_relative "../lib/private_strategy"
 class KongHarnesses < Formula
   desc "One-shot OIDC credential helper for local coding agents"
   homepage "https://github.com/Kong/kong-harnesses"
-  version "0.11.0"
+  version "0.12.2"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/Kong/kong-harnesses/releases/download/v0.11.0/kong-harnesses_v0.11.0_darwin_amd64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "955b1381940297ca5fabb47caf727d65c49fef4479622ba38c9165b74d9a8197"
+      url "https://github.com/Kong/kong-harnesses/releases/download/v0.12.2/kong-harnesses_v0.12.2_darwin_amd64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
+      sha256 "64ee6859bee6b4de440008c71c528284c20b6e5d8bf76ba4f3fb3ab29244657b"
 
       define_method(:install) do
         bin.install "kong-harnesses"
@@ -19,8 +19,8 @@ class KongHarnesses < Formula
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/Kong/kong-harnesses/releases/download/v0.11.0/kong-harnesses_v0.11.0_darwin_arm64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "81af76a0e9bd9f9a4310d9bb19c8be224ccbbb649a6bb9309c1f5a93909be0a9"
+      url "https://github.com/Kong/kong-harnesses/releases/download/v0.12.2/kong-harnesses_v0.12.2_darwin_arm64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
+      sha256 "5b69201c79de98b0b9a0aa2ca345d9d57c0d1cf26df4f01e18b7987dc7ca9973"
 
       define_method(:install) do
         bin.install "kong-harnesses"
@@ -31,16 +31,16 @@ class KongHarnesses < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/Kong/kong-harnesses/releases/download/v0.11.0/kong-harnesses_v0.11.0_linux_amd64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "ffb9c23c1db8b30837a387cc9d072af312f1c6fda1fa08c2b8626b34a36e12f6"
+      url "https://github.com/Kong/kong-harnesses/releases/download/v0.12.2/kong-harnesses_v0.12.2_linux_amd64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
+      sha256 "bcf0d505592ddaa4d53a2e346c44863cc618f510dbb99f1ac5f69de484394f80"
       define_method(:install) do
         bin.install "kong-harnesses"
         bin.install_symlink "kong-harnesses" => "agent-auth-cli"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/Kong/kong-harnesses/releases/download/v0.11.0/kong-harnesses_v0.11.0_linux_arm64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "95c82e17a86ae749af45856c9997b2e1d19b18fdcd32acf95ab3de48ef927874"
+      url "https://github.com/Kong/kong-harnesses/releases/download/v0.12.2/kong-harnesses_v0.12.2_linux_arm64.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
+      sha256 "6767d45ab52547f5cc6f129b4680a6f550e6a5422b4d9e0618b4ee787d4d99cc"
       define_method(:install) do
         bin.install "kong-harnesses"
         bin.install_symlink "kong-harnesses" => "agent-auth-cli"
