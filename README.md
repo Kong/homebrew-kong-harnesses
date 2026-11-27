@@ -22,5 +22,7 @@ formula, and `brew install agent-auth-cli` installs `kong-harnesses`. From
 v0.9.0 the formula also installs `agent-auth-cli` as a link to
 `kong-harnesses`, so client settings that an older release wrote keep working.
 
+To update an old client configuration, run `kong-harnesses profile activate <profile>` for that profile.
+
 Keep the name `homebrew-agent-auth-cli` free in the Kong organization: a new
 repository with that name would end the redirect.

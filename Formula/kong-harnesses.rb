@@ -52,19 +52,12 @@ class KongHarnesses < Formula
   end
 
   def caveats
-    <<~EOS
-      After an upgrade, run `kong-harnesses status --profile <profile>`. It says
-      when this release changes what `profile activate` writes, and names the
-      command that applies it. On macOS, first run
-      `kong-harnesses login --profile <profile>` and choose Always Allow when
-      macOS asks, so this build can read your saved sign-in.
-
-      agent-auth-cli is now kong-harnesses. The formula also installs
-      `agent-auth-cli` as a link to it, so client settings that an older
-      release wrote keep working. Run
-      `kong-harnesses profile activate <profile>` to write settings
-      that use the new name.
+    message = <<~EOS
+      After an upgrade, check your profiles and client settings:
+        kong-harnesses status
     EOS
+    message += "\nKeychain can ask for permission when kong-harnesses reads your saved credential.\n" if OS.mac?
+    message
   end
 
   test do
