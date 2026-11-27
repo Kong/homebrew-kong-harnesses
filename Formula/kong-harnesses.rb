@@ -5,12 +5,12 @@
 class KongHarnesses < Formula
   desc "One-shot OIDC credential helper for local coding agents"
   homepage "https://cloudsmith.io/~kong/repos/kong-harnesses/packages/"
-  version "0.22.0"
+  version "0.23.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://packages.konghq.com/public/kong-harnesses/raw/names/kong-harnesses-darwin-amd64-tar-gz/versions/0.22.0/kong-harnesses_v0.22.0_darwin_amd64.tar.gz"
-      sha256 "838f7ca278bfc67d6f82a05d7e705b07f9c14cdb5642fe467060c354bf2aad75"
+      url "https://packages.konghq.com/public/kong-harnesses/raw/names/kong-harnesses-darwin-amd64-tar-gz/versions/0.23.0/kong-harnesses_v0.23.0_darwin_amd64.tar.gz"
+      sha256 "256a91a735f8e5d35a6b3909fcdea4273f96fd084dc3f4a5a641097d1c17d496"
 
       define_method(:install) do
         bin.install "kong-harnesses"
@@ -19,8 +19,8 @@ class KongHarnesses < Formula
       end
     end
     if Hardware::CPU.arm?
-      url "https://packages.konghq.com/public/kong-harnesses/raw/names/kong-harnesses-darwin-arm64-tar-gz/versions/0.22.0/kong-harnesses_v0.22.0_darwin_arm64.tar.gz"
-      sha256 "650e6781e93e256f44153f2cf695cba2ef9552f56638b85fa378607fd0f50d19"
+      url "https://packages.konghq.com/public/kong-harnesses/raw/names/kong-harnesses-darwin-arm64-tar-gz/versions/0.23.0/kong-harnesses_v0.23.0_darwin_arm64.tar.gz"
+      sha256 "b1f752c321bf774801fd7d125672112075783c32c0b249d024537422807f1401"
 
       define_method(:install) do
         bin.install "kong-harnesses"
@@ -32,8 +32,8 @@ class KongHarnesses < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://packages.konghq.com/public/kong-harnesses/raw/names/kong-harnesses-linux-amd64-tar-gz/versions/0.22.0/kong-harnesses_v0.22.0_linux_amd64.tar.gz"
-      sha256 "7caf8e333647a519614d0da68504caf41a9071e4aff41592adc35c1ee14119ae"
+      url "https://packages.konghq.com/public/kong-harnesses/raw/names/kong-harnesses-linux-amd64-tar-gz/versions/0.23.0/kong-harnesses_v0.23.0_linux_amd64.tar.gz"
+      sha256 "8754d4997dda4a39c584ba6d236c65c6211ea1869ddea03ffe864835f80af873"
       define_method(:install) do
         bin.install "kong-harnesses"
         bin.install_symlink "kong-harnesses" => "agent-auth-cli"
@@ -41,8 +41,8 @@ class KongHarnesses < Formula
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://packages.konghq.com/public/kong-harnesses/raw/names/kong-harnesses-linux-arm64-tar-gz/versions/0.22.0/kong-harnesses_v0.22.0_linux_arm64.tar.gz"
-      sha256 "31667007c082c4e95a3a4d4899a4adae424d1258452bd666e9a0964ac377e96f"
+      url "https://packages.konghq.com/public/kong-harnesses/raw/names/kong-harnesses-linux-arm64-tar-gz/versions/0.23.0/kong-harnesses_v0.23.0_linux_arm64.tar.gz"
+      sha256 "977f39ede3ed2cd17aeb5917358541da292dc487544783f741ce92f0ac8e96fd"
       define_method(:install) do
         bin.install "kong-harnesses"
         bin.install_symlink "kong-harnesses" => "agent-auth-cli"
